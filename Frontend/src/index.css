@@ -9,3 +9,8 @@
   font-style: normal;
   scrollbar-width: none;
 }
+
+::selection {
+  background-color: black;
+  color: white;
+}

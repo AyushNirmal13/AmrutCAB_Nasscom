@@ -28,12 +28,16 @@ const userSchema = new mongoose.Schema(
       select: false,
     },
     phone: {
-      type: Number,
+      type: String,
       minlength: 10,
       maxlength: 10,
     },
     socketId: {
       type: String,
+    },
+    emailVerified: {
+      type: Boolean,
+      default: false,
     },
     rides: [
       {
@@ -50,7 +54,7 @@ userSchema.statics.hashPassword = async function (password) {
 };
 
 userSchema.methods.generateAuthToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+  return jwt.sign({ id: this._id, userType: "user" }, process.env.JWT_SECRET, {
     expiresIn: "24h",
   });
 };

@@ -1,17 +1,25 @@
 import axios from "axios";
-import React, { Children, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../contexts/userContext";
+import { useUser } from "../contexts/UserContext";
+import VerifyEmail from "../components/VerifyEmail";
+import Loading from "./Loading";
+
 function UserProtectedWrapper({ children }) {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
-  const { setUser } = useUser();
+  const { user, setUser } = useUser();
+
+  const [loading, setLoading] = useState(true);
+  const [isVerified, setIsVerified] = useState(null);
 
   useEffect(() => {
     if (!token) {
       navigate("/login");
+      return;
     }
 
+    setLoading(true);
     axios
       .get(`${import.meta.env.VITE_SERVER_URL}/user/profile`, {
         headers: {
@@ -20,16 +28,29 @@ function UserProtectedWrapper({ children }) {
       })
       .then((response) => {
         if (response.status === 200) {
-          setUser(response.data.user);
+          const user = response.data.user;
+          setUser(user);
+          localStorage.setItem(
+            "userData",
+            JSON.stringify({ type: "user", data: user })
+          );
+          setIsVerified(user.emailVerified);
         }
       })
-      .catch((err) => {
+      .catch(() => {
         localStorage.removeItem("token");
+        localStorage.removeItem("userData");
         navigate("/login");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [token]);
 
+  if (loading) return <Loading />;
+
   return <>{children}</>;
 }
+
 
 export default UserProtectedWrapper;

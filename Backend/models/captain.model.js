@@ -27,9 +27,9 @@ const captainSchema = new mongoose.Schema(
       select: false,
     },
     phone: {
-      type: Number,
-      min: 10,
-      max: 10,
+      type: String,
+      minlength: 10,
+      maxlength: 10,
     },
     socketId: {
       type: String,
@@ -68,12 +68,20 @@ const captainSchema = new mongoose.Schema(
     },
 
     location: {
-      ltd: {
-        type: Number,
+      type: {
+        type: String,
+        enum: ["Point"],
+        required: true,
+        default: "Point",
       },
-      lng: {
-        type: Number,
+      coordinates: {
+        type: [Number],
+        required: true,
       },
+    },
+    emailVerified: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }
@@ -84,9 +92,13 @@ captainSchema.statics.hashPassword = async function (password) {
 };
 
 captainSchema.methods.generateAuthToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: "24h",
-  });
+  return jwt.sign(
+    { id: this._id, userType: "captain" },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "24h",
+    }
+  );
 };
 
 captainSchema.methods.comparePassword = async function (password) {

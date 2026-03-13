@@ -1,5 +1,10 @@
-import { ChevronDown, CreditCard, MapPinMinus, MapPinPlus } from "lucide-react";
-import React, { useState } from "react";
+import {
+  CreditCard,
+  MapPinMinus,
+  MapPinPlus,
+  PhoneCall,
+  SendHorizontal,
+} from "lucide-react";
 import Button from "./Button";
 
 function NewRide({
@@ -14,14 +19,12 @@ function NewRide({
   acceptRide,
   endRide,
   verifyOTP,
+  error,
 }) {
-
   const ignoreRide = () => {
     setShowPanel(false);
     showPreviousPanel(true);
   };
-
-
 
   return (
     <>
@@ -30,7 +33,7 @@ function NewRide({
           showPanel ? "bottom-0" : "-bottom-[60%]"
         } transition-all duration-500 absolute bg-white w-full rounded-t-xl p-4 pt-0`}
       >
-        <div
+        {/* <div
           onClick={() => {
             setShowPanel(false);
             showPreviousPanel(true);
@@ -38,36 +41,55 @@ function NewRide({
           className="flex justify-center  py-2 pb-4 cursor-pointer"
         >
           <ChevronDown strokeWidth={2.5} className="text-zinc-300" />
-        </div>
+        </div> */}
         <div>
-          <div className="flex justify-between items-center pb-4">
+          <div className="flex justify-between items-center pb-4 pt-2">
             <div className="flex items-center gap-3">
-              <img
-                className="rounded-full w-10 h-10  object-cover"
-                src="https://images.unsplash.com/photo-1656399910089-b7ead999bf23?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fG1hbGUlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D"
-                alt="Driver picture"
-              />
+              <div className="my-2 select-none rounded-full w-10 h-10 bg-black text-white hover:bg-gray-800 mx-auto flex items-center justify-center">
+                <h1 className="text-lg text-white">
+                  {rideData?.user?.fullname?.firstname[0]}
+                  {rideData?.user?.fullname?.lastname[0]}
+                </h1>
+              </div>
 
               <div>
                 <h1 className="text-lg font-semibold leading-6">
-                  {rideData.user.fullname.firstname}{" "}
-                  {rideData.user.fullname.lastname}
+                  {rideData?.user?.fullname?.firstname}{" "}
+                  {rideData?.user?.fullname?.lastname}
                 </h1>
                 <p className="text-xs text-gray-500 ">
-                  {rideData.user.phone || rideData.user.email}
+                  {rideData?.user?.phone || rideData?.user?.email}
                 </p>
               </div>
             </div>
 
             <div className="text-right">
-              <h1 className="font-semibold text-lg">₹ {rideData.fare}</h1>
+              <h1 className="font-semibold text-lg">₹ {rideData?.fare}</h1>
               <p className="text-xs text-gray-500 ">
-                {(Number(rideData.distance.toFixed(2)) / 1000).toFixed(1)} Km
+                {(Number(rideData?.distance?.toFixed(2)) / 1000)?.toFixed(1)} Km
               </p>
             </div>
           </div>
 
-          <div className="">
+          {/* Message and call */}
+          {showBtn != "accept" && (
+            <div className="flex gap-2 mb-2">
+              <Button
+                type={"link"}
+                path={`/captain/chat/${rideData?._id}`}
+                title={"Send a message..."}
+                icon={<SendHorizontal strokeWidth={1.5} size={18} />}
+                classes={"bg-zinc-100 font-medium text-sm text-zinc-950"}
+              />
+              <div className="flex items-center justify-center w-14 rounded-md bg-zinc-100">
+                <a href={"tel:" + rideData?.user?.phone}>
+                  <PhoneCall size={18} strokeWidth={2} color="black" />
+                </a>
+              </div>
+            </div>
+          )}
+
+          <div>
             {/* Pickup Location */}
             <div className="flex items-center gap-3 border-t-2 py-2 px-2">
               <MapPinMinus size={18} />
@@ -154,6 +176,9 @@ function NewRide({
                 placeholder={"Enter OTP"}
                 className="w-full bg-zinc-100 px-4 py-3 rounded-lg outline-none text-sm mb-2"
               />
+              {error && (
+                <p className="text-red-500 text-xs mb-2 text-center">{error}</p>
+              )}
               <Button title={"Verify OTP"} loading={loading} fun={verifyOTP} />{" "}
             </>
           ) : (
@@ -161,7 +186,7 @@ function NewRide({
               title={"End Ride"}
               fun={endRide}
               loading={loading}
-              classes={"bg-green-600 "}
+              classes={"bg-black text-white hover:bg-gray-800 "}
             />
           )}
         </div>

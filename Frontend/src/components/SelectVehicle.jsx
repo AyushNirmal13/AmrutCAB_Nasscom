@@ -1,10 +1,9 @@
 import { ChevronDown } from "lucide-react";
-import React from "react";
 
 const vehicles = [
   {
     id: 1,
-    name: "UberGo",
+    name: "Car",
     description: "Affordable, compact rides",
     type: "car",
     image: "car.png",
@@ -20,13 +19,14 @@ const vehicles = [
   },
   {
     id: 3,
-    name: "UberAuto",
+    name: "Auto",
     description: "Affordable, auto rides",
     type: "auto",
     image: "auto.webp",
     price: 200.0,
   },
 ];
+
 function SelectVehicle({
   selectedVehicle,
   showPanel,
@@ -37,7 +37,6 @@ function SelectVehicle({
 }) {
   return (
     <>
-      {/* {showPanel && ( */}
       <div
         className={`${showPanel ? "bottom-0" : "-bottom-[60%]"} transition-all duration-500 absolute  bg-white w-full rounded-t-xl p-4 pt-0`}
       >
@@ -61,7 +60,6 @@ function SelectVehicle({
           />
         ))}
       </div>
-      {/* )} */}
     </>
   );
 }
@@ -90,7 +88,7 @@ const Vehicle = ({
       </div>
       <div className="h-full w-full ">
         <h1 className="text-lg font-semibold leading-6">{vehicle.name}</h1>
-        <p className="text-xs leading-3 font-semibold">2 mins away • 15:24</p>
+        {/* <p className="text-xs leading-3 font-semibold">2 mins away • 15:24</p> */}
         <p className="text-xs text-gray-800 ">{vehicle.description}</p>
       </div>
       <div className="h-12 w-24">

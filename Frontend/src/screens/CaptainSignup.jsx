@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Heading, Input } from "../components";
 import axios from "axios";
-import { ChevronLeft, ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowLeft, ChevronRight } from "lucide-react";
+import Console from "../utils/console";
 
 function CaptainSignup() {
   const [responseError, setResponseError] = useState("");
@@ -18,6 +19,7 @@ function CaptainSignup() {
 
   const navigation = useNavigate();
   const signupCaptain = async (data) => {
+
     const captainData = {
       fullname: {
         firstname: data.firstname,
@@ -25,6 +27,7 @@ function CaptainSignup() {
       },
       email: data.email,
       password: data.password,
+      phone: data.phone,
       vehicle: {
         color: data.color,
         number: data.number,
@@ -32,7 +35,7 @@ function CaptainSignup() {
         type: data.type,
       },
     };
-    console.log(captainData);
+    Console.log(captainData);
 
     try {
       setLoading(true);
@@ -40,7 +43,7 @@ function CaptainSignup() {
         `${import.meta.env.VITE_SERVER_URL}/captain/register`,
         captainData
       );
-      console.log(response);
+      Console.log(response);
       localStorage.setItem("token", response.data.token);
       navigation("/captain/home");
     } catch (error) {
@@ -48,7 +51,7 @@ function CaptainSignup() {
         error.response.data[0]?.msg || error.response.data.message
       );
       setShowVehiclePanel(false);
-      console.log(error);
+      Console.log(error);
     } finally {
       setLoading(false);
     }
@@ -63,7 +66,7 @@ function CaptainSignup() {
   return (
     <div className="w-full h-dvh flex flex-col justify-between p-4 pt-6">
       <div>
-        <Heading title={"Captain Sign Up"} />
+        <Heading title={"Captain Sign Up🚕"} />
         <form onSubmit={handleSubmit(signupCaptain)}>
           {!showVehiclePanel && (
             <>
@@ -81,7 +84,13 @@ function CaptainSignup() {
                   error={errors.lastname}
                 />
               </div>
-
+              <Input
+                label={"Phone Number"}
+                type={"number"}
+                name={"phone"}
+                register={register}
+                error={errors.phone}
+              />
               <Input
                 label={"Email"}
                 type={"email"}
@@ -89,6 +98,7 @@ function CaptainSignup() {
                 register={register}
                 error={errors.email}
               />
+
               <Input
                 label={"Password"}
                 type={"password"}
@@ -170,7 +180,7 @@ function CaptainSignup() {
           type={"link"}
           path={"/signup"}
           title={"Sign Up as User"}
-          classes={"bg-green-500"}
+          classes={"bg-black text-white hover:bg-gray-800"}
         />
         <p className="text-xs font-normal text-center self-end mt-6">
           This site is protected by reCAPTCHA and the Google{" "}

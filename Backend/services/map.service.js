@@ -3,7 +3,7 @@ const captainModel = require("../models/captain.model");
 
 module.exports.getAddressCoordinate = async (address) => {
   const apiKey = process.env.GOOGLE_MAPS_API;
-  const url = `https://maps.gomaps.pro/maps/api/geocode/json?address=${encodeURIComponent(
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
     address
   )}&key=${apiKey}`;
 
@@ -30,7 +30,7 @@ module.exports.getDistanceTime = async (origin, destination) => {
   }
   const apiKey = process.env.GOOGLE_MAPS_API;
 
-  const url = `https://maps.gomaps.pro/maps/api/distancematrix/json?origins=${encodeURIComponent(
+  const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${encodeURIComponent(
     origin
   )}&destinations=${encodeURIComponent(destination)}&key=${apiKey}`;
 
@@ -57,7 +57,7 @@ module.exports.getAutoCompleteSuggestions = async (input) => {
   }
 
   const apiKey = process.env.GOOGLE_MAPS_API;
-  const url = `https://maps.gomaps.pro/maps/api/place/autocomplete/json?input=${encodeURIComponent(
+  const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(
     input
   )}&key=${apiKey}`;
 
@@ -71,25 +71,25 @@ module.exports.getAutoCompleteSuggestions = async (input) => {
       throw new Error("Unable to fetch suggestions");
     }
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message);
     throw err;
   }
 };
 
-module.exports.getCaptainsInTheRadius = async (ltd, lng, radius) => {
+module.exports.getCaptainsInTheRadius = async (ltd, lng, radius, vehicleType) => {
   // radius in km
-
+  
   try {
     const captains = await captainModel.find({
       location: {
         $geoWithin: {
-          $centerSphere: [[ltd, lng], radius / 6371],
+          $centerSphere: [[lng, ltd], radius / 6371],
         },
       },
+      "vehicle.type": vehicleType,
     });
-    console.log(captains)
     return captains;
   } catch (error) {
-    throw new Error("Error in getting captain in radius");
+    throw new Error("Error in getting captain in radius: " + error.message);
   }
 };
