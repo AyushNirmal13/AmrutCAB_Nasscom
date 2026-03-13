@@ -77,7 +77,7 @@ function VerifyEmail({ user, role }) {
                 </p>
                 <Button
                     title={getButtonTitle()}
-                    classes={"bg-orange-500"}
+                    classes={"bg-black text-white hover:bg-gray-800"}
                     loading={loading}
                     loadingMessage={"Sending Email..."}
                     fun={sendVerificationEmail}

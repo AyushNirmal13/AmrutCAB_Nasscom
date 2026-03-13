@@ -180,7 +180,7 @@ function CaptainSignup() {
           type={"link"}
           path={"/signup"}
           title={"Sign Up as User"}
-          classes={"bg-green-500"}
+          classes={"bg-black text-white hover:bg-gray-800"}
         />
         <p className="text-xs font-normal text-center self-end mt-6">
           This site is protected by reCAPTCHA and the Google{" "}

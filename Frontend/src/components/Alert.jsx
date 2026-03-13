@@ -6,7 +6,7 @@ export const Alert = ({ heading, text, isVisible, onClose, type }) => {
     const [isAnimating, setIsAnimating] = useState(false);
 
     const status = {
-        success: "bg-green-500",
+        success: "bg-black text-white hover:bg-gray-800",
         failure: "bg-red-600"
     }
 

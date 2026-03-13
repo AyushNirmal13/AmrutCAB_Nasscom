@@ -88,7 +88,7 @@ function UserLogin() {
           type={"link"}
           path={"/captain/login"}
           title={"Login as Captain"}
-          classes={"bg-orange-500"}
+          classes={"bg-black text-white hover:bg-gray-800"}
         />
         <p className="text-xs font-normal text-center self-end mt-6">
           This site is protected by reCAPTCHA and the Google{" "}

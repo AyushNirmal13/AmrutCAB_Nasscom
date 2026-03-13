@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "../components/index";
 import background from "/get_started_illustration.jpg";
 import { useNavigate } from "react-router-dom";
-import logo from '/logo-quickride.png'
+import logo from '/logo-AmrutCAB.png'
 
 function GetStarted() {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ function GetStarted() {
         className="flex flex-col bg-white p-4 pb-8 gap-8 rounded-t-lg
       "
       >
-        <h1 className="text-2xl font-semibold">Get started with QuickRide</h1>
+        <h1 className="text-2xl font-semibold">Get started with AmrutCAB</h1>
         <Button
           title={"Continue"}
           path={"/login"}

@@ -106,7 +106,7 @@ function ChatScreen() {
             className="cursor-pointer"
             onClick={() => navigation(-1)}
           />
-          <div className="select-none rounded-full w-10 h-10 bg-blue-600 flex items-center justify-center">
+          <div className="select-none rounded-full w-10 h-10 bg-black text-white hover:bg-gray-800 flex items-center justify-center">
             <h1 className="text-lg font-semibold text-white">
               {userData?.fullname?.firstname[0]}
               {userData?.fullname?.lastname[0]}
@@ -127,7 +127,7 @@ function ChatScreen() {
                   <span
                     key={i}
                     className={`${message.by == userType
-                      ? "ml-auto rounded-br-none bg-blue-600 text-white"
+                      ? "ml-auto rounded-br-none bg-black text-white hover:bg-gray-800 text-white"
                       : "mr-auto rounded-bl-none bg-white"
                       } rounded-xl mb-1 px-3 pt-2 pb-[3px] text-sm max-w-64 leading-4`}
                   >
@@ -152,7 +152,7 @@ function ChatScreen() {
             autoFocus
             spellCheck="false"
           />
-          <button className="cursor-pointer px-1 bg-blue-600 hover:bg-blue-700 h-full aspect-square rounded-md flex items-center justify-center text-white">
+          <button className="cursor-pointer px-1 bg-black text-white hover:bg-gray-800 hover:bg-blue-700 h-full aspect-square rounded-md flex items-center justify-center text-white">
             <Send />
           </button>
         </form>

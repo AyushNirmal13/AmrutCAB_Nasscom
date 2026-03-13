@@ -201,7 +201,7 @@ export const Ride = ({ ride }) => {
       <div className="w-full  items-center truncate">
         <div className="flex items-center relative w-full h-fit">
           <div className="h-4/5 w-[3px] flex flex-col items-center justify-between border-dashed border-2  border-black rounded-full absolute mx-2">
-            <div className="w-3 h-3 rounded-full border-[3px] -mt-1 bg-green-500 border-black"></div>
+            <div className="w-3 h-3 rounded-full border-[3px] -mt-1 bg-black text-white hover:bg-gray-800 border-black"></div>
             <div className="w-3 h-3 rounded-sm border-[3px] -mb-1 bg-red-400 border-black"></div>
           </div>
           <div className="ml-7 truncate w-full">

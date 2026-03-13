@@ -14,7 +14,7 @@ const Error = () => {
         </p>
         <Button
           title="Go Back Home"
-          classes="bg-orange-500"
+          classes="bg-black text-white hover:bg-gray-800"
           fun={() => navigate("/")}
         />
       </div>
