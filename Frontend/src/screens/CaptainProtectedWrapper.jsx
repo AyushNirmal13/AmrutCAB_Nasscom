@@ -47,10 +47,6 @@ function CaptainProtectedWrapper({ children }) {
 
   if (loading) return <Loading />;
 
-  if (isVerified === false) {
-    return <VerifyEmail user={captain} role={"captain"} />;
-  }
-
   return <>{children}</>;
 }
 
