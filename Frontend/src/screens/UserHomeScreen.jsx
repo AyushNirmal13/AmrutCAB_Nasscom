@@ -146,7 +146,7 @@ function UserHomeScreen() {
       rideTimeout.current = setTimeout(() => {
         cancelRide();
       }, import.meta.env.VITE_RIDE_TIMEOUT);
-      
+
     } catch (error) {
       Console.log(error);
       setLoading(false);
@@ -243,8 +243,10 @@ function UserHomeScreen() {
         userType: "user",
       });
     }
+  }, [user]);
 
-    socket.on("ride-confirmed", (data) => {
+  useEffect(() => {
+    const handleRideConfirmed = (data) => {
       Console.log("Clearing Timeout", rideTimeout);
       clearTimeout(rideTimeout.current);
       Console.log("Cleared Timeout");
@@ -254,16 +256,16 @@ function UserHomeScreen() {
         `https://www.google.com/maps?q=${data.captain.location.coordinates[1]},${data.captain.location.coordinates[0]} to ${pickupLocation}&output=embed`
       );
       setConfirmedRideData(data);
-    });
+    };
 
-    socket.on("ride-started", (data) => {
+    const handleRideStarted = (data) => {
       Console.log("Ride started");
       setMapLocation(
         `https://www.google.com/maps?q=${data.pickup} to ${data.destination}&output=embed`
       );
-    });
+    };
 
-    socket.on("ride-ended", (data) => {
+    const handleRideEnded = (data) => {
       Console.log("Ride Ended");
       setShowRideDetailsPanel(false);
       setShowSelectVehiclePanel(false);
@@ -284,8 +286,18 @@ function UserHomeScreen() {
           }
         );
       }
-    });
-  }, [user]);
+    };
+
+    socket.on("ride-confirmed", handleRideConfirmed);
+    socket.on("ride-started", handleRideStarted);
+    socket.on("ride-ended", handleRideEnded);
+
+    return () => {
+      socket.off("ride-confirmed", handleRideConfirmed);
+      socket.off("ride-started", handleRideStarted);
+      socket.off("ride-ended", handleRideEnded);
+    };
+  }, [socket, pickupLocation]);
 
   // Get ride details
   useEffect(() => {
