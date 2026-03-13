@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="/Frontend//public/logo-quickride-green.png" height="100px" >
+    <img src="/Frontend//public/logo-AmrutCAB.png" height="100px" >
 </div>
 
 # QuickRide - Full Stack Ride Booking Application
