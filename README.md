@@ -2,14 +2,11 @@
     <img src="/Frontend//public/logo-AmrutCAB.png" height="100px" >
 </div>
 
-# QuickRide - Full Stack Ride Booking Application
+# AmrutCAB - Full Stack Ride Booking Application
 
-QuickRide is a feature-rich project built using modern web technologies. It replicates the core features and functionalities of the existing ride booking platforms, including **user authentication**, **ride booking**, **real-time location tracking**, **fare calculation** and **real-time communication**. The application features a clean and responsive user interface, ensuring an intuitive user experience. Designed as a learning and portfolio project, it showcases skills in **frontend and backend development, API integration, and real-time features**.
+AmrutCAB is a feature-rich project built using modern web technologies. It replicates the core features and functionalities of the existing ride booking platforms, including **user authentication**, **ride booking**, **real-time location tracking**, **fare calculation** and **real-time communication**. The application features a clean and responsive user interface, ensuring an intuitive user experience. Designed as a learning and portfolio project, it showcases skills in **frontend and backend development, API integration, and real-time features**.
 
 
----
-
-⭐ **If you found this project helpful or interesting, please consider giving it a star on [GitHub](https://github.com/asif-khan-2k19/QuickRide)! It helps others discover the project and keeps me motivated to improve it.** ⭐
 
 ---
 
