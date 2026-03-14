@@ -1,15 +1,15 @@
 <div align="center">
-    <img src="/Frontend//public/logo-quickride-green.png" height="100px" >
+    <img src="/Frontend//public/logo-AmrutCAB.png" height="100px" >
 </div>
 
-# QuickRide - Full Stack Ride Booking Application
+# AmrutCAB - Full Stack Ride Booking Application
 
-QuickRide is a feature-rich project built using modern web technologies. It replicates the core features and functionalities of the existing ride booking platforms, including **user authentication**, **ride booking**, **real-time location tracking**, **fare calculation** and **real-time communication**. The application features a clean and responsive user interface, ensuring an intuitive user experience. Designed as a learning and portfolio project, it showcases skills in **frontend and backend development, API integration, and real-time features**.
+AmrutCAB is a feature-rich project built using modern web technologies. It replicates the core features and functionalities of the existing ride booking platforms, including **user authentication**, **ride booking**, **real-time location tracking**, **fare calculation** and **real-time communication**. The application features a clean and responsive user interface, ensuring an intuitive user experience. Designed as a learning and portfolio project, it showcases skills in **frontend and backend development, API integration, and real-time features**.
 
 
 ---
 
-⭐ **If you found this project helpful or interesting, please consider giving it a star on [GitHub](https://github.com/asif-khan-2k19/QuickRide)! It helps others discover the project and keeps me motivated to improve it.** ⭐
+⭐ **If you found this project helpful or interesting, please consider giving it a star on [GitHub](https://github.com/AyushNirmal13/AmrutCAB_Nasscom)! It helps others discover the project and keeps me motivated to improve it.** ⭐
 
 ---
 
@@ -209,25 +209,3 @@ MAIL_USER=<your-gmail-id>
 MAIL_PASS=<your-app-password>
 ```
 
----
-
-## 🤝 Contributing
-
-We welcome community contributions! To contribute:
-
-1. Star this repository
-2. Fork this repository
-3. Create a new branch (`git checkout -b feature/YourFeature`)
-4. Commit your changes (`git commit -m 'Add your feature description...'`)
-5. Push to the branch (`git push origin feature/YourFeature`)
-6. Create a Pull Request
-
----
-
-## 📝 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-**Ready to contribute? Let’s build something amazing together.**
